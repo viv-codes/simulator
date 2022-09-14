@@ -205,11 +205,12 @@ RUN \
     meson install -C build     
 USER root
 RUN  apt-get update && apt-get install golang -y
-USER sim
+USER sim 
 RUN \
     cd /home/sim/Downloads/ && \
-    go get framagit.org/batsim/batexpe/cmd/robin && \
-    go get framagit.org/batsim/batexpe/cmd/robintest
+    export GO111MODULE=on &&\
+    go get framagit.org/batsim/batexpe/cmd/robin@latest && \
+    go get framagit.org/batsim/batexpe/cmd/robintest@latest
 
 USER root
 RUN \
